@@ -1,0 +1,59 @@
+<div class="login-body">
+    <h3 class="title">Login</h3>
+    <form class="form" action="/users/login" method="post">
+        <label>Gmail</label>
+        <input type="email" name="gmail">
+        <label>Password</label>
+        <input type="password" name="password">
+        <button class="btn btn-success " type="submit">Submit</button>
+        <a href="/users/signup">dont have an account..? </a>
+    </form>
+
+</div>
+
+
+<style>
+    .btn{
+        margin: 30px;
+    }
+    label{
+        font-size: 15px;
+        margin-top: 5px;
+    }
+    a{
+        margin: 10px;
+    }
+    input{
+        border-radius: 7px;
+        padding: 5px;
+        margin: 5px;
+        font-family: cursive;
+    }
+    .login-body {
+        
+        margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .form {
+        max-width: 600px;
+        max-height: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px;
+
+    }
+
+    .title {
+        border-radius: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 30px;
+        font-weight: 700;
+    }
+</style>

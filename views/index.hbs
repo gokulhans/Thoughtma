@@ -1,0 +1,126 @@
+<div class="home">
+    <img src="https://images.pexels.com/photos/2823459/pexels-photo-2823459.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+        alt="">
+</div>
+<h1>{{user.name}}</h1>
+{{#each blogs}}
+<div class="blog-div">
+    <img class="blog-img"
+        src="https://images.pexels.com/photos/2823459/pexels-photo-2823459.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+    <div class="text">
+        <h5>{{this.title}}</h5>
+        <div class="author">
+            <img src="https://images.pexels.com/photos/4965133/pexels-photo-4965133.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                alt="image">
+            <h4> {{this.user}}</h4>
+        </div>
+        <p>{{this.blog}}</p>
+    </div>
+</div>
+{{/each}}
+
+
+
+<a href="/users/newblog" class="bot-div">
+    <h4>+</h4>
+</a>
+
+
+
+<style>
+    a , a:hover {
+        text-decoration: none;
+        color: white;
+        text-decoration:none
+    }
+
+    .author {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .author img {
+        border-radius: 100px;
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        object-fit: cover;
+    }
+
+    .text h4 {
+        font-size: 10px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color: rgb(255, 255, 255);
+
+    }
+
+    .text p {
+        font-family: cursive;
+        font-size: 10px;
+        color: bisque;
+        margin-top: 5px;
+    }
+
+    .text h5 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 15px;
+
+    }
+
+    .text {
+        max-width: 60%;
+    }
+
+    .blog-div {
+        display: flex;
+        margin-top: 20px;
+        border-radius: 1rem;
+        width: 100%;
+        height: 18%;
+    }
+
+    .blog-img {
+        width: 40%;
+        height: 100%;
+        border-radius: 1rem;
+        object-fit: cover;
+        margin-right: 5%;
+    }
+
+    .home {
+        padding: 5px;
+        border: black solid 3px;
+        border-radius: 1rem;
+        width: 100%;
+        height: 40%;
+    }
+
+    .home img {
+        width: 100%;
+        height: 100%;
+        border-radius: 1rem;
+        object-fit: cover;
+    }
+
+    .bot-div {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        position: fixed;
+        bottom: 0;
+        left: 47%;
+        background: #111010;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 1rem;
+        border: white solid 3px;
+        margin: 5px;
+        cursor: pointer;
+    }
+
+    .bot-div h4 {
+        font-size: 30px;
+    }
+</style>
