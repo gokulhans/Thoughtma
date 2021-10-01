@@ -3,6 +3,8 @@
         alt="">
 </div>
 <h1>{{user.name}}</h1>
+
+
 {{#each blogs}}
 <div class="blog-div">
     <img class="blog-img"
@@ -10,7 +12,7 @@
     <div class="text">
        <a href="/users/blog/{{this._id}}"> <h5>{{this.title}}</h5></a>
         <div class="author">
-            <img src="https://images.pexels.com/photos/4965133/pexels-photo-4965133.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+            <img src="/images/{{this.userid}}.jpg"
                 alt="image">
           <a href="/users/profile/{{this.userid}}"> <h4> {{this.name}}</h4></a>
         </div>

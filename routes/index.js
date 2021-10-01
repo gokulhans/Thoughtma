@@ -11,21 +11,24 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/upload', function(req, res) {
-  console.log('call');
   let data = req.body
-  data.imgtype = 'profilepic'
   console.log(data);
-  console.log(data.imgurl);
-  let img = data.imgurl
   db.get().collection('images').insertOne(data).then((response) => {
-    console.log(response.insertedId);
+    let id = response.insertedId
+    let userid = req.body.userid
+    let image = req.files.image
+    image.mv('./public/images/'+userid+'.jpg',(err,done)=>{
+      if(!err){
+        res.redirect('/users/myprofile/')
+      }else{
+        console.log(err);
+      }
+    })
   })
-  // console.log(req.body);
-  // console.log(req.files.image);
 
-  cloudinary.v2.uploader.upload(img,
+  /*cloudinary.v2.uploader.upload(img,
   { public_id: "olympic_flagfd" }, 
-  function(error, result) {console.log(result); });
+  function(error, result) {console.log(result); });*/
          
 });
 
