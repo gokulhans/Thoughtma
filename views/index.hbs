@@ -8,11 +8,12 @@
     <img class="blog-img"
         src="https://images.pexels.com/photos/2823459/pexels-photo-2823459.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
     <div class="text">
-        <h5>{{this.title}}</h5>
+       <a href="/users/blog/{{this._id}}"> <h5>{{this.title}}</h5></a>
         <div class="author">
             <img src="https://images.pexels.com/photos/4965133/pexels-photo-4965133.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
                 alt="image">
-            <h4> {{this.user}}</h4>
+            <h4> {{this.name}}</h4>
+            <a style="margin-left: 10px;" href="/users/delete/{{this._id}}">O</a>
         </div>
         <p>{{this.blog}}</p>
     </div>
