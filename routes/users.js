@@ -13,9 +13,13 @@ var ObjectId = require('mongodb').ObjectId
 //   }
 // }
 router.get('/',async function (req, res) {
-  let user = await db.get().collection('user').findOne({_id:ObjectId(req.session.user)})
-  let blogs =  await db.get().collection('blogs').find().toArray()
-  res.render('index',{user,blogs});
+  if (req.session.loggedIN) {
+    let user = await db.get().collection('user').findOne({_id:ObjectId(req.session.user)})
+    let blogs =  await db.get().collection('blogs').find().toArray()
+    res.render('index',{user,blogs});    
+  } else {
+    res.redirect('/users/signup/')
+  }
   
 });
 
@@ -33,22 +37,58 @@ router.post('/signup', (req, res) => {
   fun.doSignup(req.body).then((response) => {
     session=req.session;
     session.user=response.insertedId
+    session.loggedfalse = false
+    session.loggedIN = true
     res.redirect('/users/')
   })
 
 })
 router.get('/login', function (req, res) {
-  res.render('login');
+  console.log(req.session);
+  if (req.session.loggedIN) {
+    res.redirect('/users/')
+  }
+  if (req.session.loggedfalse) {
+    res.render('login',{err:true});
+  } else {
+    res.render('login');
+  }
 });
 
+router.post('/login', (req, res) => {
+  fun.doLogin(req.body).then((response) => {
+    if (response.status) {
+      req.session.user = String(response.user._id) 
+      req.session.loggedfalse = false
+      req.session.loggedIN = true
+      res.redirect('/users/')
+    } else {
+      req.session.loggedfalse = true
+
+      res.redirect('/users/login');
+    }
+  })
+})
+
 router.get('/logout', function (req, res) {
+  req.session.destroy()
   res.redirect('/');
 });
 
 
-router.get('/profile', async function (req, res) {
+router.get('/myprofile', async function (req, res) {
   let user = await db.get().collection('user').findOne({_id:ObjectId(req.session.user)})
-  res.render('profile',{user})
+  let blogs = await db.get().collection('blogs').find({"userid":req.session.user}).toArray()
+  res.render('profile',{user,blogs})
+});
+
+
+
+router.get('/profile/:id', async function (req, res) {
+  let userid = req.params.id
+  let user = await db.get().collection('user').findOne({_id:ObjectId(userid)})
+  let blogs = await db.get().collection('blogs').find({"userid":userid}).toArray()
+  res.render('userprofile',{blogs,user})
 });
 
 router.get('/newblog',async function (req, res) {
@@ -62,17 +102,6 @@ router.post('/newblog', async function (req, res) {
   res.render('index',{blogs})
 });
 
-router.post('/login', (req, res) => {
-  fun.doLogin(req.body).then((response) => {
-    console.log(response.status);
-    if (response.status) {
-      let user = response.user
-      res.render('index', { user })
-    } else {
-      res.redirect('/users/login');
-    }
-  })
-})
 
 router.get('/delete/:id', (req, res) => {
   id = req.params.id

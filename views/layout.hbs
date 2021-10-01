@@ -22,8 +22,11 @@
 
 
   <div class="top-div">
-   <a href="/users/profile"><img src="https://images.pexels.com/photos/4965133/pexels-photo-4965133.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="image"></a>
-    <h4>Thoughtma</h4>
+   <a href="/users/myprofile"><img src="https://images.pexels.com/photos/4965133/pexels-photo-4965133.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="image"></a>
+    <a href="/users/"><h4>Thoughtma</h4></a>
+    {{#if user}}
+    <a class="btn btn-danger" href="/users/logout">logout</a>
+    {{/if}}
   </div>
 
   {{{body}}}

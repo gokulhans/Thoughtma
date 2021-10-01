@@ -1,17 +1,11 @@
 <div class="home">
-    <h3>welcome {{user.name}},</h3>
-    <p>you can update your profile from here</p>
     <div class="edit">
         <div class="row name">
-            <h1>Name: </h1>
-            <input type="text" class="name-input" value="{{user.name}}">
+            <h1>Name: {{user.name}} </h1>
         </div>
         <div class="row about">
-            <h1>About: </h1>
-            <textarea class="about-input" maxlength="50" type="text" placeholder="add something about you.."
-                value="{{user.about}}" rows="3"></textarea>
+            <h1>About: {{user.about}}</h1>
         </div>
-            <a href="/" class="update btn btn-success"> > </a>
         <img class=""
             src="https://images.pexels.com/photos/4965133/pexels-photo-4965133.jpeg?auto=compress&cs=tinysrgb&h=650&w=940">
     </div>

@@ -14,19 +14,19 @@ module.exports={
     }, 
     doLogin:(userdata)=>{
         return new Promise(async(resolve,reject)=>{
-            let validPassword
+            let user= await db.get().collection('user').findOne({gmail:userdata.gmail}).then((response) => {
+                return userobj = response
+            })
+            let validPassword = await bcrypt.compare(userdata.password,user.password)
             let response = {}
-            let user= await db.get().collection('user').findOne({gmail:userdata.gmail})
-            validPassword= await bcrypt.compare(userdata.password,user.password)
-
                 if(!validPassword){
                     console.log('login failed');
                     response.status = false
                     resolve(response)
                 }else {
                     console.log('login success');
-                    response.user = user
                     response.status = true
+                    response.user = userobj
                     resolve(response)
                 }
             })  

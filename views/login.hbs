@@ -1,5 +1,8 @@
 <div class="login-body">
     <h3 class="title">Login</h3>
+    {{#if err}}
+    <h1>Invalid user or Password</h1>
+    {{/if}}
     <form class="form" action="/users/login" method="post">
         <label>Gmail</label>
         <input type="email" name="gmail">
