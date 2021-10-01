@@ -24,7 +24,7 @@ router.post('/upload', function(req, res) {
   // console.log(req.files.image);
 
   cloudinary.v2.uploader.upload(img,
-  { public_id: "olympic_flag" }, 
+  { public_id: "olympic_flagfd" }, 
   function(error, result) {console.log(result); });
          
 });
