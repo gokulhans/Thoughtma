@@ -7,13 +7,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 const sessions = require('express-session');
+const cloudinary = require("cloudinary");
 var logger = require('morgan');
 var db = require('./connection');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const hbs = require('express-handlebars');
 var app = express();
-var session = require('express-session')
+var fileUpload = require('express-fileupload')
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -36,7 +39,13 @@ app.use(sessions({
     resave: false
 }));
 
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+});
 
+app.use(fileUpload());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

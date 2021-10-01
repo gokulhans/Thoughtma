@@ -22,11 +22,12 @@
 
 
   <div class="top-div">
-   <a href="/users/myprofile"><img src="https://images.pexels.com/photos/4965133/pexels-photo-4965133.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="image"></a>
-    <a href="/users/"><h4>Thoughtma</h4></a>
-    {{#if user}}
-    <a class="btn btn-danger" href="/users/logout">logout</a>
-    {{/if}}
+    <a href="/users/myprofile"><img
+        src="https://images.pexels.com/photos/4965133/pexels-photo-4965133.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+        alt="image"></a>
+    <a href="/users/">
+      <h4>Thoughtma</h4>
+    </a>
   </div>
 
   {{{body}}}
@@ -34,7 +35,15 @@
 
 
   <style>
-    .top-div img{
+    a,
+    a:hover {
+      text-decoration: none;
+      color: white;
+      text-decoration: none
+    }
+
+
+    .top-div img {
       position: absolute;
       top: 10px;
       right: 10px;
@@ -42,6 +51,7 @@
       width: 40px;
       height: 40px;
     }
+
     .top-div {
       font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
       padding: 0;
@@ -53,7 +63,6 @@
       width: 100%;
       height: 60px;
     }
-   
   </style>
 
   <!-- Optional JavaScript -->

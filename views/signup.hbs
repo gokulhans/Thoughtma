@@ -1,6 +1,12 @@
 
 <div class="login-body">
     <h3 class="title">Sign Up</h3>
+     {{#if err}}
+    
+    <div class="is-valid">
+   Email is already existed
+    </div>
+    {{/if}}
 <form class="form" action="/users/signup" method="post">
     <label>Name</label>
     <input type="text" name="name" required>
@@ -14,7 +20,13 @@
 </div>
 
 
+
 <style>
+      .is-valid {
+        color: red;
+        outline-color: white;
+    }
+    
     .btn{
         margin: 30px;
     }

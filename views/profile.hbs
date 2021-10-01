@@ -1,6 +1,10 @@
 <div class="home">
-    <h3>welcome {{user.name}},</h3>
-    <p>you can update your profile from here</p>
+    <div class="row">
+        <h3 class="welcome">welcome {{user.name}},</h3>
+        {{#if user}}
+        <a class="btn logout btn-danger" href="/users/logout">[></a>
+        {{/if}}
+    </div>
     <div class="edit">
         <div class="row name">
             <h1>Name: </h1>
@@ -8,16 +12,34 @@
         </div>
         <div class="row about">
             <h1>About: </h1>
-            <textarea class="about-input" maxlength="50" type="text" placeholder="add something about you.."
+            <textarea class="about-input" maxlength="60" type="text" placeholder="add something about you.."
                 value="{{user.about}}" rows="3"></textarea>
         </div>
-            <a href="/" class="update btn btn-success"> > </a>
-        <img class=""
+        <a href="/" class="update btn btn-success"> > </a>
+        <img class="" id="img"
             src="https://images.pexels.com/photos/4965133/pexels-photo-4965133.jpeg?auto=compress&cs=tinysrgb&h=650&w=940">
     </div>
 </div>
 
+{{!-- <input type="text" value="{{user._id}}" hidden>
+--}}
 
+<form  class="bot-div" action="/upload" method="post" enctype="multipart/form-data">
+<input id="file" onchange="viewImage(event)" type="file" name="image" hidden>
+<input type="text" name="imgurl" id="imgurl" > 
+<label for="file">+</label>
+<button type="submit">=</button>
+</form>
+
+<input type="text" name="imgurldev" value="sdjkfbdfsdh" id="imgurldev" > 
+
+<script>
+    function viewImage(event){
+        document.getElementById('imgurl').value = URL.createObjectURL(event.target.files[0])
+        document.getElementById('imgurldev').value = URL.createObjectURL(event.target.files[0])
+        document.getElementById('img').src = URL.createObjectURL(event.target.files[0])
+    }
+</script>
 
 {{#each blogs}}
 <div class="blog-div">
@@ -43,7 +65,35 @@
 
 
 <style>
- 
+    .welcome{
+        margin-left: 3%;
+        margin-bottom: 10px;
+    }
+    .bot-div {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        position: absolute;
+        bottom: 54%;
+        right: 10%;
+        background: #111010;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 100px;
+        border: white solid 3px;
+        margin: 5px;
+        cursor: pointer;
+        font-size: 30px;
+    }
+    .bot-div label {
+        cursor: pointer;
+    }
+    .logout {
+        position: absolute;
+        right: 10%;
+    }
+
     .edit {
         margin-left: 10px;
     }
@@ -81,7 +131,7 @@
 
     .about-input {
         font-size: 12px;
-        width: 35%;
+        width: 40%;
     }
 
     textarea {
@@ -142,7 +192,9 @@
         width: auto;
         height: 40%;
     }
-      a , a:hover {
+
+    a,
+    a:hover {
         text-decoration: none;
         color: white;
     }
@@ -200,5 +252,4 @@
         object-fit: cover;
         margin-right: 5%;
     }
-
 </style>

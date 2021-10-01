@@ -6,15 +6,23 @@ var ObjectId = require('mongodb').ObjectId
 module.exports={
     doSignup:(userdata)=>{
         return new Promise(async(resolve,reject)=>{
-            userdata.password=await bcrypt.hash(userdata.password,10)
-            db.get().collection('user').insertOne(userdata).then((response)=>{
+            let user= await db.get().collection('users').findOne({gmail:userdata.gmail})
+            if (user) {
+                let response = {}
+                response.signupstatus = false
                 resolve(response)
-            })
+            } else {
+                userdata.password=await bcrypt.hash(userdata.password,10)
+                db.get().collection('users').insertOne(userdata).then((response)=>{
+                    response.signupstatus = true
+                    resolve(response)
+                })            
+            }
         })
     }, 
     doLogin:(userdata)=>{
         return new Promise(async(resolve,reject)=>{
-            let user= await db.get().collection('user').findOne({gmail:userdata.gmail}).then((response) => {
+            let user= await db.get().collection('users').findOne({gmail:userdata.gmail}).then((response) => {
                 return userobj = response
             })
             let validPassword = await bcrypt.compare(userdata.password,user.password)

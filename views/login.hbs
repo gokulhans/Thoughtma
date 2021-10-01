@@ -1,7 +1,10 @@
 <div class="login-body">
     <h3 class="title">Login</h3>
     {{#if err}}
-    <h1>Invalid user or Password</h1>
+    
+    <div class="is-valid">
+   Invalid Username Or Password
+    </div>
     {{/if}}
     <form class="form" action="/users/login" method="post">
         <label>Gmail</label>
@@ -16,6 +19,10 @@
 
 
 <style>
+    .is-valid {
+        color: red;
+        outline-color: white;
+    }
     .btn{
         margin: 30px;
     }
