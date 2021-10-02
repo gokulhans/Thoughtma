@@ -94,7 +94,7 @@ router.get('/myprofile', async function (req, res) {
   let blogs = await db.get().collection('blogs').find({ "userid": req.session.user }).toArray()
   res.render('profile', { user, blogs })
 });
-
+ 
 
 
 router.get('/profile/:id', async function (req, res) {
