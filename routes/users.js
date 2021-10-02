@@ -3,7 +3,7 @@ var router = express.Router();
 var db = require('../connection')
 var fun = require('../functions')
 var ObjectId = require('mongodb').ObjectId
-
+const cloudinary = require("cloudinary");
 
 /* GET users listing. */
 // const requiredlogin = (req,res)=>{
@@ -15,9 +15,9 @@ var ObjectId = require('mongodb').ObjectId
 // }
 router.get('/', async function (req, res) {
   if (req.session.loggedIN) {
-    let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })
+    let user = req.session.user
     let blogs = await db.get().collection('blogs').find().toArray()
-    res.render('index', { user, blogs });
+    res.render('index', { blogs,user });
   } else {
     res.redirect('/users/signup/')
   }
@@ -34,8 +34,10 @@ router.get('/signup', (req, res) => {
 
 router.get('/blog/:id', async (req, res) => {
   let id = req.params.id
-  let blogs = await db.get().collection('blogs').findOne({ _id: ObjectId(id) })
-  res.render('blog', { blogs })
+  let user = req.session.user
+  let blog = await db.get().collection('blogs').findOne({ _id: ObjectId(id) })
+  let blogs = await db.get().collection('blogs').find().toArray()
+  res.render('blog', { blogs,user,blog })
 })
 
 router.post('/signup', (req, res) => {
@@ -88,7 +90,7 @@ router.get('/logout', function (req, res) {
 
 
 router.get('/myprofile', async function (req, res) {
-  let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })
+  let user = req.session.user  
   let blogs = await db.get().collection('blogs').find({ "userid": req.session.user }).toArray()
   res.render('profile', { user, blogs })
 });
@@ -108,7 +110,13 @@ router.get('/newblog', async function (req, res) {
 });
 router.post('/newblog', async function (req, res) {
   let blogdata = req.body
+  if (!blogdata.imgurl) {
+    blogdata.imgurl = 'hlo.jpg'
+  }
+  fun.imgUpload(blogdata).then((response)=>{
+  })
   db.get().collection('blogs').insertOne(blogdata)
+
   res.redirect('/users')
 });
 

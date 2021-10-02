@@ -1,56 +1,58 @@
 <div class="home">
+
     <div class="row">
         <h3 class="welcome">welcome {{user.name}},</h3>
         {{#if user}}
         <a class="btn logout btn-danger" href="/users/logout">[></a>
         {{/if}}
     </div>
+
     <div class="edit">
         <div class="row name">
             <h1>Name: </h1>
             <input type="text" class="name-input" value="{{user.name}}">
         </div>
+
         <div class="row about">
             <h1>About: </h1>
             <textarea class="about-input" maxlength="60" type="text" placeholder="add something about you.."
                 value="{{user.about}}" rows="3"></textarea>
         </div>
         <a href="/" class="update btn btn-success"> > </a>
-        <img class="" id="img"
-            src="/images/{{user._id}}.jpg">
+        <img class="" id="img" src="/images/{{user._id}}.jpg">
+
     </div>
+
 </div>
 
 
-<form  class="bot-div" action="/upload" method="post" enctype="multipart/form-data">
-<input type="text" value="{{user._id}}" name="userid" hidden>
-<input id="file" onchange="form.submit()" type="file" name="image" hidden>
-<label  for="file">+</label>
+<form class="bot-div" action="/upload" method="post" enctype="multipart/form-data">
+    <input type="text" value="{{user._id}}" name="userid" hidden>
+    <input id="file" onchange="form.submit()" type="file" name="image" hidden>
+    <label for="file">+</label>
 </form>
 
 
 
 
-    {{!-- function viewImage(event){
-        document.getElementById('img').src = URL.createObjectURL(event.target.files[0])
-    } --}}
+{{!-- function viewImage(event){
+document.getElementById('img').src = URL.createObjectURL(event.target.files[0])
+} --}}
 
 
 {{#each blogs}}
 <div class="blog-div">
     <img class="blog-img"
-        src="https://images.pexels.com/photos/2823459/pexels-photo-2823459.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+        src="https://images.unsplash.com/photo-1612874470096-d93a610de87b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80">
     <div class="text">
         <a href="/users/blog/{{this._id}}">
             <h5>{{this.title}}</h5>
         </a>
         <div class="author">
-            <img src="/images/{{this.userid}}.jpg"
-                alt="image">
+            <img src="/images/{{this.userid}}.jpg" alt="image">
             <h4> {{this.name}}</h4>
             <a style="margin-left: 10px;" href="/users/delete/{{this._id}}">O</a>
         </div>
-        <p>{{this.blog}}</p>
     </div>
 </div>
 {{/each}}
@@ -60,10 +62,15 @@
 
 
 <style>
-    .welcome{
+    label {
+        color: white;
+    }
+
+    .welcome {
         margin-left: 3%;
         margin-bottom: 10px;
     }
+
     .bot-div {
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         position: absolute;
@@ -81,9 +88,11 @@
         cursor: pointer;
         font-size: 30px;
     }
+
     .bot-div label {
         cursor: pointer;
     }
+
     .logout {
         position: absolute;
         right: 10%;
@@ -136,7 +145,7 @@
         outline: none;
         width: 35%;
         margin-left: 10px;
-        color: antiquewhite;
+        color: rgb(0, 0, 0);
         font-family: cursive;
         font-size: 20px;
         -webkit-box-shadow: none;
@@ -152,7 +161,7 @@
         outline: none;
         width: 35%;
         margin-left: 10px;
-        color: antiquewhite;
+        color: rgb(0, 0, 0);
         font-family: cursive;
         font-size: 20px;
     }
@@ -180,24 +189,32 @@
 
     .home {
         margin-top: 40px;
+        margin-bottom: 30px;
         padding: 10px;
         padding-left: 20px;
-        border: black solid 3px;
+        border: rgb(228, 228, 228) solid 3px;
         border-radius: 1rem;
         width: auto;
         height: 40%;
+        background-color: ;
     }
 
     a,
     a:hover {
         text-decoration: none;
-        color: white;
+        color: rgb(0, 0, 0);
     }
 
     .author {
         display: flex;
         align-items: center;
         margin-top: 10px;
+    }
+
+    .author {
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
     }
 
     .author img {
@@ -211,39 +228,36 @@
     .text h4 {
         font-size: 10px;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        color: rgb(255, 255, 255);
-
+        color: rgb(0, 0, 0)
     }
 
     .text p {
         font-family: cursive;
         font-size: 10px;
-        color: bisque;
-        margin-top: 5px;
+        color: rgb(0, 0, 0);
+        margin-top: 10px;
     }
 
     .text h5 {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-size: 15px;
-
+        font-family: 'Noto Sans Malayalam', sans-serif;
+        font-size: 14px;
     }
 
     .text {
-        max-width: 60%;
+        width: 70%;
     }
 
     .blog-div {
         display: flex;
-        margin-top: 20px;
-        border-radius: 1rem;
+        margin-top: 10px;
         width: 100%;
         height: 18%;
     }
 
     .blog-img {
-        width: 40%;
-        height: 100%;
-        border-radius: 1rem;
+        width: 30%;
+        height: 80%;
+        border-radius: 0.7rem;
         object-fit: cover;
         margin-right: 5%;
     }

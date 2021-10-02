@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var db = require('../connection')
 var ObjectId = require('mongodb').ObjectId
-const Formidable = require('formidable');
-const cloudinary = require("cloudinary");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -26,9 +24,7 @@ router.post('/upload', function(req, res) {
     })
   })
 
-  /*cloudinary.v2.uploader.upload(img,
-  { public_id: "olympic_flagfd" }, 
-  function(error, result) {console.log(result); });*/
+
          
 });
 

@@ -1,35 +1,116 @@
 <div class="blog">
-    <h1>{{blogs.title}}</h1>
-    <h2> <span>by</span> {{blogs.name}}</h2>
-    <p>{{blogs.blog}}</p>
+    <h1>{{blog.title}}</h1>
+    <h2> <span>by</span> {{blog.name}}</h2>
+    <p>{{blog.blog}}</p>
 </div>
 
 
+{{#each blogs}}
+<div class="blog-div">
+    <img class="blog-img"
+        src="https://images.unsplash.com/photo-1612874470096-d93a610de87b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80">
+    <div class="text">
+        <a href="/users/blog/{{this._id}}">
+            <h5>{{this.title}}</h5>
+        </a>
+        <div class="author">
+            <img src="/images/{{this.userid}}.jpg" alt="image">
+            <a href="/users/profile/{{this.userid}}">
+                <h4> {{this.name}}</h4>
+            </a>
+        </div>
+    </div>
+</div>
+{{/each}}
+
+
 <style>
-    span{
-        color: rgb(0, 255, 149);
+    span {
+        color: #000000;
     }
-    .blog{
+
+    .blog {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        margin-bottom: 100px;
+
     }
+
     .blog h1 {
-        font-size: 30px;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        color: rgb(255, 255, 255);
+        font-size: 18px;
+        font-family: 'Noto Sans Malayalam', sans-serif;
+        color: rgb(0, 0, 0);
         margin-top: 10px;
     }
+
     .blog h2 {
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-size: 15px;
-        color: bisque;
+        color: #ff0000;
         margin-top: 10px;
-        align-self: center;
+        margin-bottom: 5px;
     }
+
     .blog p {
-        font-family:cursive ;
-        font-size: 16px;
         margin-top: 10px;
+        font-weight: normal;
+        font-family: Source Sans Pro, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: normal;
+        background-color: #fff;
+        color: #000;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .author {
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+    }
+
+    .author img {
+        border-radius: 100px;
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        object-fit: cover;
+    }
+
+    .text h4 {
+        font-size: 10px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color: rgb(0, 0, 0)
+    }
+
+    .text p {
+        font-family: cursive;
+        font-size: 10px;
+        color: rgb(0, 0, 0);
+        margin-top: 10px;
+    }
+
+    .text h5 {
+        font-family: 'Noto Sans Malayalam', sans-serif;
+        font-size: 14px;
+    }
+
+    .text {
+        width: 70%;
+    }
+
+    .blog-div {
+        display: flex;
+        margin-top: 10px;
+        width: 100%;
+        height: 18%;
+    }
+
+    .blog-img {
+        width: 30%;
+        height: 80%;
+        border-radius: 0.7rem;
+        object-fit: cover;
+        margin-right: 5%;
     }
 </style>
