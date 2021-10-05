@@ -1,39 +1,45 @@
 <div class="home">
     <img src="https://images.unsplash.com/photo-1612874470096-d93a610de87b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"
         alt="">
-    <h4>സ്വത ന്ത്രമായ അഭി പ്രായ പ്രകടന ത്തിന്നു എല്ലാവ ർക്കും അധികാ രമുണ്ട് സ്വത ന്ത്രമായ അഭി പ്രായ പ്രകടന ത്തിന്നു എല്ലാ വർ ക്കും അധി കാരമുണ്ട് ‌</h4>
+    <h4>സ്വത ന്ത്രമായ അഭി പ്രായ പ്രകടന ത്തിന്നു എല്ലാവ ർക്കും അധികാ രമുണ്ട് സ്വത ന്ത്രമായ അഭി പ്രായ പ്രകടന ത്തിന്നു
+        എല്ലാ വർ ക്കും അധി കാരമുണ്ട് ‌</h4>
 </div>
 
 <div class="row">
 
-{{#each blogs}}
-<div class="blog-div">
-    <img class="blog-img"
-        src="{{this.imgurl}}">
-    <div class="text">
-        <a href="/users/blog/{{this._id}}">
-            <h5>{{this.title}}</h5>
-        </a>
-        <div class="author">
-            <img src="/images/{{this.userid}}.jpg" alt="image">
-            <a href="/users/profile/{{this.userid}}">
-                <h4> {{this.name}}</h4>
+    {{#each blogs}}
+    <div class="blog-div">
+        <img class="blog-img" src="{{this.imgurl}}">
+        <div class="text">
+            <a href="/users/blog/{{this._id}}">
+                <h5>{{this.title}}</h5>
+                <h6>{{this.section}}</h6>
             </a>
+            <div class="author">
+                <img src="/images/{{this.userid}}.jpg" alt="image">
+                <a href="/users/profile/{{this.userid}}">
+                    <h4> {{this.name}}</h4>
+                </a>
+            </div>
         </div>
     </div>
-</div>
-{{/each}}
+    {{/each}}
 
 </div>
-
-
-<a href="/users/newblog" class="bot-div">
+<a {{#if user}} href="/users/newblog" {{else}} href="/users/signup" {{/if}} class="bot-div">
     <h1>+</h1>
 </a>
 
 
 
 <style>
+    .text h6 {
+        color: rgb(0, 170, 0);
+        font-weight: 600;
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
     a,
     a:hover {
         text-decoration: none;
@@ -70,13 +76,15 @@
 
     .text h5 {
         font-family: 'Noto Sans Malayalam', sans-serif;
-        font-size: 14px;
+        font-size: 15px;
+        font-weight: 600;
     }
 
     .text {
         width: 70%;
     }
-    .row{
+
+    .row {
         align-items: center;
     }
 
@@ -84,12 +92,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top:20px;
+        margin-top: 20px;
         width: 30vw;
         height: 18%;
         padding: 15px;
         background-color: rgb(235, 235, 235);
-        margin-left: 2vw;
+        margin-left: 3vw;
         margin-right: 2vw;
         border-radius: 0.5rem;
     }
@@ -107,12 +115,11 @@
         position: fixed;
         bottom: 5%;
         right: 3%;
-        background: #000000;
+        background-color: #0db8ec;
         color: white;
         width: 60px;
-        height:60px;
+        height: 60px;
         border-radius: 10rem;
-        border: rgb(0, 0, 0) solid 3px;
         margin: 5px;
         cursor: pointer;
         display: flex;
@@ -130,7 +137,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top:10px;
+        margin-top: 10px;
     }
 
     .home h4 {

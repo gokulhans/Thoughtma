@@ -4,8 +4,14 @@ var db = require('../connection')
 var ObjectId = require('mongodb').ObjectId
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('signup');
+router.get('/',async function(req, res, next) {
+  let id = req.session.user
+  let user =  await db.get().collection('users').findOne({ _id: ObjectId(id) })
+  let blogs = await db.get().collection('blogs').find().toArray()
+  if (user) {
+    res.render('index', { blogs,user });
+  }
+  res.render('index', { blogs });
 });
 
 router.post('/upload', function(req, res) {
@@ -47,15 +53,15 @@ router.get('/deleteuser/:id', (req, res) => {
 })
 
 router.get('/section/:section', async function (req, res) {
+  var section = req.params.section
   if (req.session.loggedIN) {
-    let section = req.params.section
-    console.log(section);
     let id = req.session.user
     let user =  await db.get().collection('users').findOne({ _id: ObjectId(id) })
     let blogs = await db.get().collection('blogs').find({"section":section}).toArray()
     res.render('index', { blogs,user });
   } else {
-    res.redirect('/users/signup/')
+    let blogs = await db.get().collection('blogs').find({"section":section}).toArray()
+    res.render('index', { blogs });
   }
 
 });

@@ -1,10 +1,12 @@
 <div class="blog">
     <a href="/section/{{blog.section}}">
-        <h6>{{blog.section}}</h6>
+        <h6 class="tag-top">{{blog.section}}</h6>
     </a>
     <img class="mainblog-img" src="{{blog.imgurl}}">
     <h1>{{blog.title}}</h1>
-    <h2> <span>by</span> {{blog.name}}</h2>
+    <a href="/users/profile/{{blog.userid}}">
+        <h2> <span>by</span> {{blog.name}}</h2>
+    </a>
     <p>{{blog.blog}}</p>
 </div>
 
@@ -16,6 +18,7 @@
         <div class="text">
             <a href="/users/blog/{{this._id}}">
                 <h5>{{this.title}}</h5>
+                <h6>{{this.section}}</h6>
             </a>
             <div class="author">
                 <img src="/images/{{this.userid}}.jpg" alt="image">
@@ -30,14 +33,23 @@
 
 
 <style>
-      .mainblog-img {
+    .text h6 {
+        color: rgb(0, 170, 0);
+        font-weight: 600;
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .mainblog-img {
         margin-top: 8vh;
+        margin-bottom: 10px;
         width: 100%;
         height: 50vh;
         border-radius: 0.5rem;
         object-fit: cover;
     }
-        h6{
+
+    .tag-top {
         background-color: green;
         color: rgb(255, 255, 255);
         font-weight: 600;
@@ -52,6 +64,7 @@
         position: absolute;
         right: 10;
     }
+
     span {
         color: #000000;
     }
@@ -64,7 +77,8 @@
     }
 
     .blog h1 {
-        font-size: 22px;
+        font-size: 25px;
+        font-weight: 600;
         font-family: 'Noto Sans Malayalam', sans-serif;
         color: rgb(0, 0, 0);
         margin-top: 10px;
@@ -82,13 +96,11 @@
         margin-top: 20px;
         font-weight: normal;
         font-family: Source Sans Pro, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
-        font-size: normal;
+        font-size: 20px;
         background-color: #fff;
         color: #000;
         overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
-
-
     }
 
     .author {
@@ -120,7 +132,8 @@
 
     .text h5 {
         font-family: 'Noto Sans Malayalam', sans-serif;
-        font-size: 14px;
+        font-size: 15px;
+        font-weight: 600;
     }
 
     .text {

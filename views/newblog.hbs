@@ -1,4 +1,4 @@
-<form action="/users/newblog" method="post" class="form">
+<form  {{#if blog}} action="/users/edit/" {{else}}action="/users/newblog" {{/if}}  method="post" class="form">
     <div class="form-group">
         <label for="exampleInputEmail1">Name</label>
         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name"
@@ -8,20 +8,23 @@
 
         <label for="exampleInputEmail1">Blog Title</label>
         <input type="text" class="form-control" required id="exampleInputEmail1" aria-describedby="emailHelp"
-            name="title" placeholder="Enter title....">
+            name="title" placeholder="Enter title...." value="{{#if blog}}{{blog.title}}{{else}}{{/if}}">
     </div>
     <div class="form-group">
         <label for="exampleInputEmail1">Blog Content</label>
         <textarea class="form-control" required name="blog" id="" cols="30" rows="10"
-            placeholder="Write your blog here....."></textarea>
+            placeholder="Write your blog here.....">{{#if blog}}{{blog.blog}}{{else}}{{/if}}</textarea>
     </div>
     <input type="text" hidden class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="userid"
         value="{{user._id}}" placeholder="Enter title....">
 
+{{#if blog}} 
+    <input type="text" value="{{blog._id}}" hidden name="blogid">
+ {{/if}}
 
     <label for="exampleInputEmail1">Image url</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="imgurl"
-        placeholder="Paste image link here....">
+        placeholder="Paste image link here...." {{#if blog}}{{blog.imgurl}}{{else}}{{/if}}>
     <div>
 
         <label style="margin-top: 25px;" for="exampleInputEmail1">Add Tag</label>
