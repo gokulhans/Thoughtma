@@ -1,9 +1,11 @@
-<div class="row">
+<div class=" row">
+    <div class="allblogs">
 
-    <div class="admin">
         <h1>allblogs</h1>
+
         {{#each blogs}}
         <div class="blog-div">
+            <img class="admin-img" src="{{this.imgurl}}" alt="image">
             <div class="text">
                 <a href="/users/blog/{{this._id}}">
                     <h5>{{this.title}}</h5>
@@ -16,26 +18,26 @@
                     </a>
                     <a style="margin-left: 10px;" href="/delete/{{this._id}}">O</a>
                 </div>
-                <p>{{this.blog}}</p>
             </div>
         </div>
         {{/each}}
+
+
+
     </div>
-
-
-    <div class="users">
+    <div class="allusers">
 
         <h1>all users</h1>
 
         {{#each users}}
-        <div class="blog-div">
+        <div class="blog-divs">
             <div class="text">
                 <div class="author">
                     <img src="https://images.pexels.com/photos/4965133/pexels-photo-4965133.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
                         alt="image">
                     <a href="/users/profile/{{this._id}}">
                         <h4> {{this.name}}</h4>
-                    <a style="margin-left: 10px;" href="/deleteuser/{{this._id}}">O</a>
+                        <a style="margin-left: 10px;" href="/deleteuser/{{this._id}}">O</a>
                     </a>
                 </div>
             </div>
@@ -43,18 +45,42 @@
         {{/each}}
 
 
-
     </div>
-
-
 </div>
 
 
+
+
 <style>
-    .admin{
-        margin-right: 20%;
-        margin-left: 10px;
+    .admin-img {
+        width: 100px;
+        height: 60px;
+        object-fit: cover;
+        margin-right: 10px;
+        border-radius: .5rem;
     }
+
+    .allblogs {
+        background-color: tomato;
+        width: 30vw;
+        height: 100%;
+        margin: 10px;
+        padding: 20px;
+
+        border-radius: .5rem;
+
+    }
+
+    .allusers {
+        background-color: rgb(255, 166, 0);
+        width: 30vw;
+        height: 100%;
+        margin: 10px;
+        padding: 20px;
+        border-radius: .5rem;
+
+    }
+
     a,
     a:hover {
         text-decoration: none;
@@ -103,6 +129,13 @@
     .blog-div {
         display: flex;
         margin-top: 20px;
+        border-radius: 1rem;
+        width: 100%;
+        height: 18%;
+    }
+
+    .blog-divs {
+        display: flex;
         border-radius: 1rem;
         width: 100%;
         height: 18%;

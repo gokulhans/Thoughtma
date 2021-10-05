@@ -26,8 +26,11 @@ module.exports={
             let user= await db.get().collection('users').findOne({gmail:userdata.gmail}).then((response) => {
                 return userobj = response
             })
-            let validPassword = await bcrypt.compare(userdata.password,user.password)
+            
             let response = {}
+            if (user) {
+                
+                let validPassword = await bcrypt.compare(userdata.password,user.password)
                 if(!validPassword){
                     console.log('login failed');
                     response.status = false
@@ -38,6 +41,11 @@ module.exports={
                     response.user = userobj
                     resolve(response)
                 }
+            }else{
+                console.log('login failed');
+                    response.status = false
+                    resolve(response)
+            }
             })  
     },
     imgUpload:(data)=>{

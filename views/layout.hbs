@@ -18,22 +18,51 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam&display=swap" rel="stylesheet"></head>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam&display=swap" rel="stylesheet">
+</head>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600;900&display=swap" rel="stylesheet">
+
 <body>
 
 
 
-  <div class="top-div">
-    <a href="/users/myprofile">
-      <img {{#if user}} src="/images/{{user}}.jpg" {{else}} src=""
-        alt="image"></a>
-    {{/if}}
-    <a href="/users/">
-      <h4>Thoughtma</h4>
-    </a>
+
+
+
+
+
+  <div class="nav">
+    <div class="top-div">
+      {{!-- <a href="/users/myprofile">
+        <img {{#if user}} src="/images/{{user}}.jpg" {{else}} src="" alt="image"></a>
+      {{/if}} --}}
+      <a href="/users/">
+        <h4>THOUGHTMA</h4>
+      </a>
+    </div>
+    <div class="tags">
+       <div class="tag"><a href="/section/love">
+        <h2>Love</h2>
+      </a></div>
+       <div class="tag"><a href="/section/health">
+        <h2>Health</h2>
+      </a></div>
+      <div class="tag"><a href="/section/money">
+        <h2>Money</h2>
+      </a></div>
+       <div class="tag"><a href="/section/life">
+        <h2>Life</h2>
+       </a></div>
+    </div>
   </div>
   {{{body}}}
+
+
+
+
+
+
 
 
   <div class="bottom-div">
@@ -41,6 +70,42 @@
   </div>
 
   <style>
+    a{
+      text-decoration: none;
+      color: white;
+    }
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      z-index: 1;
+    }
+
+    .tags {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 40px;
+      background-color: white;
+    }
+
+    .tag {
+      border: #0db8ec solid 5px;
+      width: 25%;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+    }
+    .tag h2{
+      font-size: 18px;
+      font-weight: 600;
+      color: #0db8ec;
+    }
+
     .bottom-div {
       width: 100%;
       height: 7%;
@@ -63,17 +128,18 @@
       height: 40px;
     }
 
+    .top-div h4 {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: 900;
+    }
+
     .top-div {
-      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-      padding: 0;
-      position: fixed;
-      top: 0;
-      left: 0;
-      padding: 20px;
       background: #0db8ec;
       width: 100%;
-      height: 60px;
-      z-index: 1;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .top-div h4 {

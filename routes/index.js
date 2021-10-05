@@ -46,6 +46,20 @@ router.get('/deleteuser/:id', (req, res) => {
   res.redirect('/admin')
 })
 
+router.get('/section/:section', async function (req, res) {
+  if (req.session.loggedIN) {
+    let section = req.params.section
+    console.log(section);
+    let id = req.session.user
+    let user =  await db.get().collection('users').findOne({ _id: ObjectId(id) })
+    let blogs = await db.get().collection('blogs').find({"section":section}).toArray()
+    res.render('index', { blogs,user });
+  } else {
+    res.redirect('/users/signup/')
+  }
+
+});
+
 
 
 module.exports = router;
