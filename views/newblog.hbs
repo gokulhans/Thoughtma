@@ -25,10 +25,15 @@
     <label for="exampleInputEmail1">Image url</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="imgurl"
         placeholder="Paste image link here...." value="{{#if blog}}{{blog.imgurl}}{{else}}{{/if}}">
+        <small class="copy-link">copy link from <a href="https://unsplash.com"class="unplash">unplash</a> or <a href="https://www.pexels.com/" class="pexel">pexel</a> for high quality images</small>
+<div>
+    <div class="insta">
 
        <label for="exampleInputEmail1">Instagram Link (optional) </label>
       <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="instalink"
         placeholder="Paste instagram link here...." value="{{#if blog}}{{blog.instalink}}{{else}}{{/if}}">
+    </div>
+</div>
 
     <div>
   
@@ -49,6 +54,23 @@
 </form>
 
 <style>
+    .insta{
+        margin-top: 20px;
+    }
+    .unplash{
+        color: green;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .pexel{
+        color: green;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .copy-link{
+        font-size: 13px;
+        margin-top: 10px;
+    }
     .form {
         margin-top: 5%;
         margin-left: 15vh;
