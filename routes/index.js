@@ -4,7 +4,7 @@ var db = require('../connection')
 var ObjectId = require('mongodb').ObjectId
 
 /* GET home page. */
-router.get('/', async function (req, res, next) {
+router.get('/', async function (req, res) {
   let id = req.session.user
   let user = await db.get().collection('users').findOne({ _id: ObjectId(id) })
   let blogs = await db.get().collection('blogs').find().toArray()

@@ -24,11 +24,11 @@
 
     <label for="exampleInputEmail1">Image url</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="imgurl"
-        placeholder="Paste image link here...." {{#if blog}}{{blog.imgurl}}{{else}}{{/if}}>
+        placeholder="Paste image link here...." value="{{#if blog}}{{blog.imgurl}}{{else}}{{/if}}">
 
        <label for="exampleInputEmail1">Instagram Link (optional) </label>
       <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="instalink"
-        placeholder="Paste instagram link here...." {{#if blog}}{{blog.instalink}}{{else}}{{/if}}>
+        placeholder="Paste instagram link here...." value="{{#if blog}}{{blog.instalink}}{{else}}{{/if}}">
 
     <div>
 
