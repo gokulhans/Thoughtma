@@ -8,11 +8,15 @@
         <h2> <span>by</span> {{blog.name}}</h2>
     </a>
     <p>{{blog.blog}}</p>
+    <a class="insta" href="{{blog.instalink}}"><h3># See this Post on Instagram<i class="fab fa-instagram"></i></h3></a>
 </div>
+
+
 
 <div class="row">
 
     {{#each blogs}}
+
     <div class="blog-div">
         <img class="blog-img" src="{{this.imgurl}}">
         <div class="text">
@@ -29,10 +33,21 @@
         </div>
     </div>
     {{/each}}
+
 </div>
 
 
 <style>
+    .fab{
+        margin-left: 10px;
+    }
+    .insta{
+        color: blueviolet;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-weight: 600;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
     .text h6 {
         color: rgb(0, 170, 0);
         font-weight: 600;

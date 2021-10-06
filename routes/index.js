@@ -4,40 +4,40 @@ var db = require('../connection')
 var ObjectId = require('mongodb').ObjectId
 
 /* GET home page. */
-router.get('/',async function(req, res, next) {
+router.get('/', async function (req, res, next) {
   let id = req.session.user
-  let user =  await db.get().collection('users').findOne({ _id: ObjectId(id) })
+  let user = await db.get().collection('users').findOne({ _id: ObjectId(id) })
   let blogs = await db.get().collection('blogs').find().toArray()
   if (user) {
-    res.render('index', { blogs,user });
+    res.render('index', { blogs, user });
   }
   res.render('index', { blogs });
 });
 
-router.post('/upload', function(req, res) {
+router.post('/upload', function (req, res) {
   let data = req.body
   console.log(data);
   db.get().collection('images').insertOne(data).then((response) => {
     let id = response.insertedId
     let userid = req.body.userid
     let image = req.files.image
-    image.mv('./public/images/'+userid+'.jpg',(err,done)=>{
-      if(!err){
+    image.mv('./public/images/' + userid + '.jpg', (err, done) => {
+      if (!err) {
         res.redirect('/users/myprofile/')
-      }else{
+      } else {
         console.log(err);
       }
     })
   })
 
 
-         
+
 });
 
-router.get('/admin', async function(req, res) {
+router.get('/admin', async function (req, res) {
   let blogs = await db.get().collection('blogs').find().toArray()
   let users = await db.get().collection('users').find().toArray()
-  res.render('admin',{blogs,users});
+  res.render('admin', { blogs, users });
 });
 
 router.get('/delete/:id', (req, res) => {
@@ -48,7 +48,7 @@ router.get('/delete/:id', (req, res) => {
 
 router.get('/deleteuser/:id', (req, res) => {
   id = req.params.id
-  db.get().collection('users').deleteOne({ _id: ObjectId(id)})
+  db.get().collection('users').deleteOne({ _id: ObjectId(id) })
   res.redirect('/admin')
 })
 
@@ -56,11 +56,11 @@ router.get('/section/:section', async function (req, res) {
   var section = req.params.section
   if (req.session.loggedIN) {
     let id = req.session.user
-    let user =  await db.get().collection('users').findOne({ _id: ObjectId(id) })
-    let blogs = await db.get().collection('blogs').find({"section":section}).toArray()
-    res.render('index', { blogs,user });
+    let user = await db.get().collection('users').findOne({ _id: ObjectId(id) })
+    let blogs = await db.get().collection('blogs').find({ "section": section }).toArray()
+    res.render('index', { blogs, user });
   } else {
-    let blogs = await db.get().collection('blogs').find({"section":section}).toArray()
+    let blogs = await db.get().collection('blogs').find({ "section": section }).toArray()
     res.render('index', { blogs });
   }
 
