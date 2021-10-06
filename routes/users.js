@@ -18,7 +18,8 @@ router.get('/', async function (req, res) {
     let id = req.session.user
     let user =  await db.get().collection('users').findOne({ _id: ObjectId(id) })
     let blogs = await db.get().collection('blogs').find().toArray()
-    res.render('index', { blogs,user });
+    let newblog = blogs[0]
+    res.render('index', { blogs,user,newblog });
   } else {
     res.redirect('/')
   }

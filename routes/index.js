@@ -7,11 +7,12 @@ var ObjectId = require('mongodb').ObjectId
 router.get('/', async function (req, res) {
   let id = req.session.user
   let user = await db.get().collection('users').findOne({ _id: ObjectId(id) })
-  let blogs = await db.get().collection('blogs').find().toArray()
+  let blogs = await db.get().collection('blogs').find().sort({title:1}).toArray()
+  let newblog = blogs[0]
   if (user) {
-    res.render('index', { blogs, user });
+    res.render('index', { blogs, user,newblog });
   }
-  res.render('index', { blogs });
+  res.render('index', { blogs,newblog });
 });
 
 router.post('/upload', function (req, res) {
@@ -58,10 +59,12 @@ router.get('/section/:section', async function (req, res) {
     let id = req.session.user
     let user = await db.get().collection('users').findOne({ _id: ObjectId(id) })
     let blogs = await db.get().collection('blogs').find({ "section": section }).toArray()
-    res.render('index', { blogs, user });
+    let newblog = blogs[0]
+    res.render('index', { blogs, user,newblog });
   } else {
     let blogs = await db.get().collection('blogs').find({ "section": section }).toArray()
-    res.render('index', { blogs });
+    let newblog = blogs[0]
+    res.render('index', { blogs,newblog });
   }
 
 });
