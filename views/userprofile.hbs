@@ -7,8 +7,7 @@
             <div class="row about">
                 <h2>{{user.about}}</h2>
             </div>
-            <img
-                src="/images/{{user._id}}.jpg">
+            <img src="/images/{{user._id}}.jpg">
         </div>
     </div>
 </div>
@@ -20,16 +19,16 @@
 
     {{#each blogs}}
     <div class="blog-div">
-        <img class="blog-img"
-            src="{{this.imgurl}}">
+        <img class="blog-img" src="{{this.imgurl}}">
         <div class="text">
             <a href="/users/blog/{{this._id}}">
                 <h5>{{this.title}}</h5>
-                    <h6> {{this.section}}</h6>
+                <a href="/section/{{this.section}}">
+                    <h6>{{this.section}}</h6>
+                </a>
             </a>
             <div class="author">
-                <img src="/images/{{this.userid}}.jpg"
-                    alt="image">
+                <img src="/images/{{this.userid}}.jpg" alt="image">
                 <h4> {{this.name}}</h4>
             </div>
         </div>
@@ -42,7 +41,7 @@
 
 
 <style>
-        .text h6 {
+    .text h6 {
         color: rgb(0, 170, 0);
         font-weight: 600;
         font-size: 15px;
@@ -76,7 +75,7 @@
         object-fit: cover;
         position: absolute;
         top: 33%;
-        right:28%;
+        right: 28%;
     }
 
     .home p {

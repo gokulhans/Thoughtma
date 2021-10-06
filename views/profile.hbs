@@ -43,7 +43,9 @@ document.getElementById('img').src = URL.createObjectURL(event.target.files[0])
         <div class="text">
             <a href="/users/blog/{{this._id}}">
                 <h5>{{this.title}}</h5>
-                <h6>{{this.section}}</h6>
+                <a href="/section/{{this.section}}">
+                    <h6>{{this.section}}</h6>
+                </a>
             </a>
             <div class="author">
                 <img src="/images/{{this.userid}}.jpg" alt="image">
