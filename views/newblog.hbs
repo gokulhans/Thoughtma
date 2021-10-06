@@ -34,10 +34,14 @@
 
         <label style="margin-top: 25px;" for="exampleInputEmail1">Add Tag</label>
         <select class="m-3" name="section" style="padding: 5px; font-size: 15px; font-weight: 500;">
+            {{#if blog}}
+            <option value="{{blog.section}}">{{blog.section}}</option>
+            {{/if}}
             <option value="health">Health</option>
             <option value="love">Love</option>
             <option value="life">Life</option>
             <option value="money">Money</option>
+            <option value="film">Film</option>
         </select>
     </div>
 
