@@ -15,6 +15,7 @@ router.get('/', async function (req, res) {
   res.render('index', { blogs,newblog });
 });
 
+
 router.post('/upload', function (req, res) {
   let data = req.body
   console.log(data);
